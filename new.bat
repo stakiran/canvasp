@@ -3,11 +3,12 @@
 rem canvasp v0.0.1
 
 setlocal enabledelayedexpansion
+set TEMPLATE_DIRNAME=template
 
 pushd "%~dp0"
 
 set cnt=0
-for /F "usebackq" %%i in (`dir /b template\*.jpg ^| sort`) do (
+for /F "usebackq" %%i in (`dir /b %TEMPLATE_DIRNAME%\*.jpg ^| sort`) do (
 	set /a cnt=!cnt!+1
 	echo !cnt!: %%i
 )
@@ -17,7 +18,7 @@ set /p input_num="Input the number you want to use>>>";
 
 set cnt=0
 set targetfilename=NOT_FOUND
-for /F "usebackq" %%i in (`dir /b template\*.jpg ^| sort`) do (
+for /F "usebackq" %%i in (`dir /b %TEMPLATE_DIRNAME%\*.jpg ^| sort`) do (
 	set /a cnt=!cnt!+1
 	if "%input_num%"=="!cnt!" (
 		set targetfilename=%%i
@@ -39,7 +40,7 @@ set shorttime=%timebase::=%
 set shorttime=%shorttime:~0,6%
 set shortdatetime=%shortdate%_%shorttime%
 set filename=%shortdatetime%_%yourcomment%.jpg
-copy template\%targetfilename% %filename%
+copy %TEMPLATE_DIRNAME%\%targetfilename% %filename%
 start "" mspaint.exe "%filename%"
 
 popd
