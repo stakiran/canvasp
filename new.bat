@@ -76,7 +76,9 @@ set shorttime=%shorttime:~0,6%
 set shortdatetime=%shortdate%_%shorttime%
 set filename=%shortdatetime%_%yourcomment%.jpg
 copy %copysource_targetdir%\%targetfilename% %DATA_DIRNAME%\%filename%
-rem @todo Why mspaint window does not on top??
-start "" "%PAINT_APP_PATH%" "%DATA_DIRNAME%\%filename%"
+rem If use start command, the paint app window does not on top somewhy.
+rem So, use 2-step execution with another batchfile.
+remstart "" "%PAINT_APP_PATH%" "%DATA_DIRNAME%\%filename%"
+call open_image.bat "%DATA_DIRNAME%\%filename%"
 
 popd
