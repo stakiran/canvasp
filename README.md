@@ -52,3 +52,7 @@ Ans: 大まかには、あらかじめ用意された画像ファイルをコピ
 
 ## 作者
 [stakiran](https://github.com/stakiran)
+
+## 更新履歴
+[更新履歴](changelog.md)
+
