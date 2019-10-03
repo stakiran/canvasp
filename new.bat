@@ -1,6 +1,6 @@
 @echo off
 
-rem canvasp v0.0.1
+rem canvasp v0.1.0
 
 setlocal enabledelayedexpansion
 set TEMPLATE_DIRNAME=template
