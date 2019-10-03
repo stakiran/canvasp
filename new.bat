@@ -1,4 +1,7 @@
 @echo off
+
+rem canvasp v0.0.1
+
 setlocal enabledelayedexpansion
 
 pushd "%~dp0"
