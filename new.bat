@@ -9,6 +9,9 @@ set PAINT_APP_PATH=mspaint.exe
 
 pushd "%~dp0"
 
+rem Display selections of template
+rem ------------------------------
+
 set cnt=0
 for /F "usebackq" %%i in (`dir /b %TEMPLATE_DIRNAME%\*.jpg ^| sort`) do (
 	set /a cnt=!cnt!+1
@@ -16,12 +19,19 @@ for /F "usebackq" %%i in (`dir /b %TEMPLATE_DIRNAME%\*.jpg ^| sort`) do (
 )
 echo c: Clone from the latest previous image
 
+rem Prompt
+rem ------
+
 :select_retrying
 set /p input_num="Input the number you want to use>>>";
 
 set cnt=0
 set targetfilename=NOT_FOUND
 set copysource_targetdir=%TEMPLATE_DIRNAME%
+
+rem Determin useee image file from your input
+rem -----------------------------------------
+
 for /F "usebackq" %%i in (`dir /b %TEMPLATE_DIRNAME%\*.jpg ^| sort`) do (
 	set /a cnt=!cnt!+1
 	if "%input_num%"=="!cnt!" (
@@ -29,6 +39,9 @@ for /F "usebackq" %%i in (`dir /b %TEMPLATE_DIRNAME%\*.jpg ^| sort`) do (
 		break
 	)
 )
+
+rem But if clone mode, use from tha latest image file
+rem ----
 
 if "%input_num%"=="c" (
 	set cnt_for_break_instantly=0
@@ -42,10 +55,16 @@ if "%input_num%"=="c" (
 	)
 )
 
+rem Check invalid selection and retry if invalid
+rem --------------------------------------------
+
 echo Target is %targetfilename%
 if "%targetfilename%"=="NOT_FOUND" (
 	goto :select_retrying
 )
+
+rem Construct pathes and open!
+rem --------------------------
 
 set /p yourcomment="Input the comment>>>";
 set datebase=%date%
