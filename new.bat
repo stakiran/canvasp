@@ -4,6 +4,7 @@ rem canvasp v0.0.1
 
 setlocal enabledelayedexpansion
 set TEMPLATE_DIRNAME=template
+set PAINT_APP_PATH=mspaint.exe
 
 pushd "%~dp0"
 
@@ -41,6 +42,6 @@ set shorttime=%shorttime:~0,6%
 set shortdatetime=%shortdate%_%shorttime%
 set filename=%shortdatetime%_%yourcomment%.jpg
 copy %TEMPLATE_DIRNAME%\%targetfilename% %filename%
-start "" mspaint.exe "%filename%"
+start "" "%PAINT_APP_PATH%" "%filename%"
 
 popd
